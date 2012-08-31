@@ -1,0 +1,42 @@
+# X	v0:
+	
+	# X	Set-up project.
+	# X	Write basic markup with structure.
+	# X	Set up basic validation in HTML and CSS.
+	# X	Bind jQuery placeholder hooks for the relevant elements.
+	
+#	v1:
+
+	#	Implement the submit function:
+		#	If form with urls is valid, compile it into a list in order,
+		#	Store in OKV under a random unique prefixed key.
+		#	Show the read-only url field with the new bxmrx url, focus and select it.
+		
+	#	Display add and the first delete button if first url is valid.
+	
+	#	Delete will clear if only remaining entry. And delete otherwise.
+		
+	-	The add button will not be hidden once shown. This is intentional.
+	
+	#	If submit button should be disabled/enabled when the form is not/is valid. 
+		-	But it needs to update on each granular change; `.change()` only woks on focus-change.
+
+#	v2:
+
+	#	Markup display mode. Don't forge to add links to create 'marks on the footer.
+	
+	#	Load bookmarked URL:
+		#	If supplied url argument of a prefixless OKV key present, show loading message.
+		#	Read url-list from OKV.
+			#	If successful, populate and show display-list with urls, and button to launch them all.
+			#	If not, show error message.
+
+	#	Change enter button to new url after a successful 'mark.
+
+#	v3:
+
+	#	Style the shit out of the thing. 
+	#	Remember not to wrongly highlight empty or focused only text.
+
+	#	Clean code.
+	#	Get a readme, with credits, apologetics, etc.

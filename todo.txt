@@ -5,21 +5,20 @@
 	# X	Set up basic validation in HTML and CSS.
 	# X	Bind jQuery placeholder hooks for the relevant elements.
 	
-#	v1:
+# X	v1:
 
-	#	Implement the submit function:
-		#	If form with urls is valid, compile it into a list in order,
-		#	Store in OKV under a random unique prefixed key.
-		#	Show the read-only url field with the new bxmrx url, focus and select it.
+	# X	Implement the submit function:
+		# X	If form with urls is valid, compile it into a list in order,
+		# X	Store in OKV under a random unique prefixed key.
+		# X	Show the read-only url field with the new bxmrx url, focus and select it.
 		
-	#	Display add and the first delete button if first url is valid.
+	# X	Smoothly add row with add button.
 	
-	#	Delete will clear if only remaining entry. And delete otherwise.
-		
-	-	The add button will not be hidden once shown. This is intentional.
-	
-	#	If submit button should be disabled/enabled when the form is not/is valid. 
+	# X	Submit button should be disabled/enabled when the form is not/is valid. 
 		-	But it needs to update on each granular change; `.change()` only woks on focus-change.
+		-	Made use of the following compound events: `.bind("propertychange keyup input paste", handler)`!
+	
+	# X	Smoothly delete will clear if only remaining entry. And delete otherwise.
 
 #	v2:
 

@@ -1,9 +1,59 @@
 $(document).ready(function() {
 	
-	// Urls
-	$('#urls').change(function() {
-		console.log('!');
+	// Constants
+	var prefix = "bxmrx";
+	var keylength = 10;
+	var ownurl = "http://5310.github.com/"
+	
+	// Store URLs to OKV.
+	$('#enter').click(function() {
+		
+		// If URLs form valid:
+		if ( $('#urls')[0].checkValidity() ) {
+			
+			// Create an empty list of URLs.
+			var urllist = [];
+			// Add each URL to list.
+			$('.url').each(function(index) {
+				urllist.push($(this)[0].value);
+			});
+			
+			// Generate a key for the list.
+			var key = new Date().getDay() + "" + (Math.floor( Math.random() * ( Math.pow(10, keylength) - 1 - Math.pow(10, keylength - 1) ) ) + 1 + Math.pow(10, keylength-1));
+			
+			// Store
+			window.remoteStorage.setItem(prefix+key, urllist, function() {
+				
+				// Read															//DEBUG:
+				/*window.remoteStorage.getItem(prefix+key, function(value, key) {
+					console.log(value);
+				});*/
+				
+				// Set the new bxmrx'd URL to the generated URL field.
+				$('#shorturl')[0].value = ownurl + "?k=" + key;
+				
+				// Focus generated URL.
+				$('#shorturl').focus();											//BUG: Not working when called from in here.
+				
+				// Clear URLs.
+				$('#urls').empty().append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="delete" /></div>');
+				
+			});
+	
+		}
+		
 	});
+	
+	
+	// Select generated URL upon focus.
+	$('#shorturl').focus(function() {
+		console.log("Generated URL selected.");
+		$(this).select();
+	});
+	$('#shorturl').mouseup(function(e){ // fix for chrome and safari
+        e.preventDefault();
+	});
+
 
 	// Add
 	$('#addurl').click(function() {
@@ -13,20 +63,6 @@ $(document).ready(function() {
 	// Delete
 	$(document).on("click", '.delete', function() {
 		console.log($(this).parent().find('.url')[0].value);
-	});
-	
-	// Enter
-	$('#enter').click(function() {
-		console.log($('#urls')[0].checkValidity());
-	});
-	
-	// Generated Url
-	$('#shorturl').focus(function() {
-		console.log(321);
-		$(this).select();
-	});
-	$('#shorturl').mouseup(function(e){ // fix for chrome and safari
-        e.preventDefault();
 	});
 
 });

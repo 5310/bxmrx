@@ -10,6 +10,10 @@ $(document).ready(function() {
 		
 		// If URLs form valid:
 		if ( $('#urls')[0].checkValidity() ) {
+
+			// Display generating URL message.
+			$('#shorturl')[0].value= "Generating...";
+			$('#shorturl').fadeIn();
 			
 			// Create an empty list of URLs.
 			var urllist = [];
@@ -31,7 +35,6 @@ $(document).ready(function() {
 				
 				// Set the new bxmrx'd URL to the generated URL field.
 				$('#shorturl')[0].value = ownurl + "?k=" + key;
-				
 				// Focus generated URL.
 				$('#shorturl').focus();											//BUG: Not working when called from in here.
 				
@@ -52,6 +55,8 @@ $(document).ready(function() {
 			$('#enter').removeAttr('disabled');
 		} else {
 			$('#enter').attr('disabled','disabled');
+			// Also hide previously generated entry.
+			$('#shorturl').hide(500);
 		}
 	});
 	
@@ -64,6 +69,8 @@ $(document).ready(function() {
 	$('#shorturl').mouseup(function(e){ // fix for chrome and safari
         e.preventDefault();
 	});
+	// Hide generated URL field for now.
+	$('#shorturl').hide();
 
 
 	// Add new URL entry row.

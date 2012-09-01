@@ -19,6 +19,8 @@
 		-	Made use of the following compound events: `.bind("propertychange keyup input paste", handler)`!
 	
 	# X	Smoothly delete will clear if only remaining entry. And delete otherwise.
+	
+	# Smoothly show or hide generated URL text.
 
 #	v2:
 

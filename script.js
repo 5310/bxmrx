@@ -66,14 +66,19 @@ $(document).ready(function() {
 	});
 
 
-	// Add
+	// Add new URL entry row.
 	$('#addurl').click(function() {
 		$('#urls').append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="delete"/></div>');
 	});
 	
-	// Delete
+	// Delete URL entry row, or at least clear if the only one.
 	$(document).on("click", '.delete', function() {
-		console.log($(this).parent().find('.url')[0].value);
+		// If more than one URL entry exists, remove self, or else clear self.
+		if ( $('.url').length > 1 ) {
+			$(this).parent().hide(500, function() { $(this).remove(); });
+		} else {
+			$(this).parent().find('.url')[0].value = "";
+		}
 	});
 
 });

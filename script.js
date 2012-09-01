@@ -68,8 +68,10 @@ $(document).ready(function() {
 
 	// Add new URL entry row.
 	$('#addurl').click(function() {
-		$('#urls').append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="delete"/></div>');
+		var row = '<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="delete"/></div>';
+		$(row).hide().appendTo('#urls').fadeIn();
 	});
+	
 	
 	// Delete URL entry row, or at least clear if the only one.
 	$(document).on("click", '.delete', function() {

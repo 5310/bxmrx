@@ -45,6 +45,17 @@ $(document).ready(function() {
 	});
 	
 	
+	// Enable or disable the enter button based on form validity.
+	$('#urls').bind("propertychange keyup input paste", function() {
+		// If form is valid, enable button, else disable it.
+		if ( $('#urls')[0].checkValidity() ) {
+			$('#enter').removeAttr('disabled');
+		} else {
+			$('#enter').attr('disabled','disabled');
+		}
+	});
+	
+	
 	// Select generated URL upon focus.
 	$('#shorturl').focus(function() {
 		console.log("Generated URL selected.");

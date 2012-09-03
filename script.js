@@ -3,7 +3,9 @@ $(document).ready(function() {
 	// Constants
 	var prefix = "bxmrx";
 	var keylength = 10;
-	var ownurl = "http://5310.github.com/"
+	var ownurl = "http://5310.github.com/bxmrx/index.html"
+	var global_urllist = [];
+	
 	
 	// Store URLs to OKV.
 	$('#enter').click(function() {
@@ -12,7 +14,7 @@ $(document).ready(function() {
 		if ( $('#urls')[0].checkValidity() ) {
 
 			// Display generating URL message.
-			$('#shorturl')[0].value= "Generating...";
+			$('#shorturl')[0].value= "Creating BXMRX...";
 			$('#shorturl').fadeIn();
 			
 			// Create an empty list of URLs.
@@ -24,14 +26,10 @@ $(document).ready(function() {
 			
 			// Generate a key for the list.
 			var key = new Date().getDay() + "" + (Math.floor( Math.random() * ( Math.pow(10, keylength) - 1 - Math.pow(10, keylength - 1) ) ) + 1 + Math.pow(10, keylength-1));
+			//var key = "test";													//DEBUG:
 			
 			// Store
 			window.remoteStorage.setItem(prefix+key, urllist, function() {
-				
-				// Read															//DEBUG:
-				/*window.remoteStorage.getItem(prefix+key, function(value, key) {
-					console.log(value);
-				});*/
 				
 				// Set the new bxmrx'd URL to the generated URL field.
 				$('#shorturl')[0].value = ownurl + "?k=" + key;
@@ -69,13 +67,12 @@ $(document).ready(function() {
 	$('#shorturl').mouseup(function(e){ // fix for chrome and safari
         e.preventDefault();
 	});
-	// Hide generated URL field for now.
-	$('#shorturl').hide();
 
 
 	// Add new URL entry row.
 	$('#addurl').click(function() {
 		var row = '<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="delete"/></div>';
+		$('#enter').attr('disabled','disabled');
 		$(row).hide().appendTo('#urls').fadeIn();
 	});
 	
@@ -89,5 +86,84 @@ $(document).ready(function() {
 			$(this).parent().find('.url')[0].value = "";
 		}
 	});
+	
+	// Display URLlist.
+	display = function(key) {
+		
+		window.remoteStorage.getItem(prefix+key, function(value, prefixkey) {
+			
+			// Convert to array if returned as string.							//BUG: Sometimes, OKV returns value as string!
+			if ( toType(value) == "string" )
+				value = value.split(",");
+			
+			// If URL-list exists, display them. Or else, display failure message.
+			if ( value.length > 0 ) {
+					
+				// Set urllist globally.
+				global_urllist = value;
+			
+				// For all links in URL-list.
+				$('#links').empty();
+				for ( var i = 0; i < value.length; i++ ) {
+				
+					// Create all the links.
+					var url = value[0].trim();
+					var link = '<div><a class="link" href="' + url + '">' + url + '</a></div>';
+					$('#links').append(link);
+
+					// Display ALL the things.
+					$('#loadingmessage').hide(500, function() {
+						$('#links').fadeIn();
+						$('#launch').fadeIn();
+					});
+					
+				}
+				
+			} else {
+				// Display failure message.
+				$('#loadingmessage').hide(100, function() {
+					$('#failmessage').fadeIn();
+				});
+			}
+		
+		});
+		
+	};
+	
+	// Launch all URLs in list.
+	$('#addurl').click(function() {
+		
+	});
+	
+	// Launch an array of URLs.
+	launch = function() {
+		for ( var i = 0; i<global_urllist.length; i++ ) {
+			window.open(global_urllist[i], '');    
+		}  
+		//close();
+	};
+
+	// Get URL parameter.
+	parameter = function(name) {
+		return decodeURI(
+			(RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+		);
+	}
+	// Get type of variable.
+	toType = function(obj) {
+	  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+	}
+	
+	// Set page mode by URL parameter, or lack thereof.
+	mode: {
+		// If displaying a BXMRX, or making one.
+		if ( parameter('k') !== "null" ) {
+			$('#show').show();
+			display(parameter('k'));
+		} else {
+			$('#make').show();
+		}
+	};
+	
 
 });

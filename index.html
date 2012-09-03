@@ -35,8 +35,6 @@
 		    </form>
 		    
 		    <input id="addurl" type="button" value="add" />
-		    
-		    <hr />
 
 		    <input id="enter" type="button" value="enter" disabled />
 		    
@@ -46,13 +44,16 @@
 		
 		<div id="show">
 		    
-		    <div id="links">
-			Checking BXMRX...
-		    </form>
 		    
-		    <hr />
+		    <div id="loadingmessage">Checking BXMRX...</div>
 		    
-		    <input id="launch" type="button" value="launch" />
+		    <div id="failmessage">BXMRX does not exist!</div>
+		    
+		    <div id="links"></div>
+		    
+		    <a id="launch" href="javascript:launch();">launch</a>
+		    
+		    <div id="makeyourown">Create BXMRX?</div>
 		    
 		</div>
 		

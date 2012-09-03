@@ -22,17 +22,15 @@
 	
 	# Smoothly show or hide generated URL text.
 
-#	v2:
+# X	v2:
 
-	#	Markup display mode. Don't forge to add links to create 'marks on the footer.
+	# X	Markup display mode. Don't forge to add links to create 'marks on the footer.
 	
-	#	Load bookmarked URL:
-		#	If supplied url argument of a prefixless OKV key present, show loading message.
-		#	Read url-list from OKV.
-			#	If successful, populate and show display-list with urls, and button to launch them all.
-			#	If not, show error message.
-
-	#	Change enter button to new url after a successful 'mark.
+	# X	Load bookmarked URL:
+		# X	If supplied url argument of a prefixless OKV key present, show loading message.
+		# X	Read url-list from OKV.
+			# X	If successful, populate and show display-list with urls, and button to launch them all.
+			# X	If not, show error message.
 
 #	v3:
 

@@ -4,6 +4,6 @@ input:required:invalid, input:focus:invalid {
   background: #FFAC97;
 }
 
-#make {
+#make, #shorturl, #show, #failmessage, #links, #launch {
     display: none;
 }

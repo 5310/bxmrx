@@ -26,19 +26,35 @@
 	    
 	    <div id="main" role="main">
 		
-		<form id="urls">
-		    <div class="row">
-			<input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="delete" />
-		    </div>
-		</form>
-		
-		<input id="addurl" type="button" value="add" />
-		
-		<hr />
+		<div id="make">
+		    
+		    <form id="urls">
+			<div class="row">
+			    <input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="delete" />
+			</div>
+		    </form>
+		    
+		    <input id="addurl" type="button" value="add" />
+		    
+		    <hr />
 
-		<input id="enter" type="button" value="enter" disabled />
+		    <input id="enter" type="button" value="enter" disabled />
+		    
+		    <input id="shorturl" type="url" readonly value="Creating BXMRX..." />
 		
-		<input id="shorturl" type="url" readonly value="asdasd" />
+		</div>
+		
+		<div id="show">
+		    
+		    <div id="links">
+			Checking BXMRX...
+		    </form>
+		    
+		    <hr />
+		    
+		    <input id="launch" type="button" value="launch" />
+		    
+		</div>
 		
 	    </div>
 	    

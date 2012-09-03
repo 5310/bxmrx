@@ -3,3 +3,7 @@ input:required:invalid, input:focus:invalid {
   -moz-box-shadow: none;
   background: #FFAC97;
 }
+
+#make {
+    display: none;
+}

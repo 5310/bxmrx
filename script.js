@@ -104,7 +104,7 @@ $(document).ready(function() {
 				value = value.split(",");
 			
 			// If URL-list exists, display them. Or else, display failure message.
-			if ( value.length > 0 ) {
+			if ( value !== null && value.length > 0 ) {
 					
 				// Set urllist globally.
 				global_urllist = value;
@@ -169,6 +169,7 @@ $(document).ready(function() {
 		if ( parameter('k') !== "null" ) {
 			$('#show').show();
 			display(parameter('k'));
+			$('#launch').hide();												//BUG: Fading in from display: none is breaking style for some reason.
 		} else {
 			$('#make').show();
 		}

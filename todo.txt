@@ -32,19 +32,17 @@
 			# X	If successful, populate and show display-list with urls, and button to launch them all.
 			# X	If not, show error message.
 
-#	v3:
+# X	v3:
 
-	#	Style the shit out of the thing. 
-	#	Remember not to wrongly highlight empty or focused only text.
-
-	#	Clean code.
-	#	Get a readme, with credits, apologetics, etc.
+	# X	Style the shit out of the thing. 
+	# X	Remember not to wrongly highlight empty or focused only text.
 
 
 #	v4:
-
-	#	Add flag for auto launching.
 	
-	#	Make tab cycling work intuitively.
+	@ X	Convert generated code element into a div.
 	
-	#	Convert generated code element into a div.
+	@	Make tab cycling work intuitively.
+	
+	#	Clean code.
+	#	Get a readme, with credits, apologetics, etc.

@@ -91,8 +91,21 @@ p { margin: 5px; }
 }
 
 #make #shorturl {
+    border: 2px solid white;
+    border-radius: 0px;
+    padding: 5px;
+    box-shadow: 
+            0 0 5px rgba(0,0,0,0.1);
+    margin: 3px 0;
+    background: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
+}
+
+#make #shorturl::selection {
+    background: #72C294;
+    color: white;
 }
 
 

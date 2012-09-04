@@ -13,7 +13,7 @@ $(document).ready(function() {
 		if ( $('#urls')[0].checkValidity() ) {
 
 			// Display generating URL message.
-			$('#shorturl')[0].value= "Creating BXMRX...";
+			$('#shorturl').html("CREATING BXMRX");
 			$('#shorturl').fadeIn();
 			
 			// Create an empty list of URLs.
@@ -31,9 +31,7 @@ $(document).ready(function() {
 			window.remoteStorage.setItem(prefix+key, urllist, function() {
 				
 				// Set the new bxmrx'd URL to the generated URL field.
-				$('#shorturl')[0].value = ownurl + "?k=" + key;
-				// Focus generated URL.
-				$('#shorturl').focus();											//BUG: Not working when called from in here.
+				$('#shorturl').html(ownurl + "?k=" + key);
 				
 				// Clear URLs.
 				$('#urls').empty().append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="×" /></div>');
@@ -59,12 +57,16 @@ $(document).ready(function() {
 	
 	
 	// Select generated URL upon focus.
-	$('#shorturl').focus(function() {
-		console.log("Generated URL selected.");
-		$(this).select();
-	});
-	$('#shorturl').mouseup(function(e){ // fix for chrome and safari
-        e.preventDefault();
+	$('#shorturl').click(function() {
+		var doc = document;
+		var text = doc.getElementById('shorturl');    
+		if (window.getSelection) {
+			var selection = window.getSelection();            
+			var range = doc.createRange();
+			range.selectNodeContents(text);
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
 	});
 
 

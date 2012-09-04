@@ -36,6 +36,12 @@
 
 	#	Style the shit out of the thing. 
 	#	Remember not to wrongly highlight empty or focused only text.
+	
+	#	Make tab cycling work intuitively.
+	
+	#	Convert generated code element into a div.
+	
+	#	Add flag for auto launching.
 
 	#	Clean code.
 	#	Get a readme, with credits, apologetics, etc.

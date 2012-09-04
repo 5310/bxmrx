@@ -120,6 +120,7 @@ $(document).ready(function() {
 
 					// Display ALL the things.
 					$('#loadingmessage').hide(500, function() {
+						$('#launch').html("OPEN BXMRX "+key);
 						$('#links').fadeIn();
 						$('#launch').fadeIn();
 					});

@@ -4,9 +4,9 @@
 		
 	    <meta charset="utf-8">
 	    
-	    <title></title>
-	    <meta name="description" content="" />
-	    <meta name="author" content="" />
+	    <title>BXMRX</title>
+	    <meta name="description" content='An experimental multi-bookmarking "service" built using OpenKeyVal' />
+	    <meta name="author" content="Sayantan Chaudhuri" />
 	    
 	    <meta id="viewport" name="viewport" content="width=device-width" />
 	    
@@ -22,6 +22,7 @@
 	<body>
 		
 	    <header>
+		<p>BXMRX: MULTIPAGE BOOKMARKS</p>
 	    </header>
 	    
 	    <div id="main" role="main">
@@ -30,13 +31,13 @@
 		    
 		    <form id="urls">
 			<div class="row">
-			    <input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="delete" />
+			    <input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="×" />
 			</div>
 		    </form>
 		    
-		    <input id="addurl" type="button" value="add" />
+		    <input id="addurl" type="button" value="+" />
 
-		    <input id="enter" type="button" value="enter" disabled />
+		    <input id="enter" type="button" value="CREATE BXMRX" disabled />
 		    
 		    <input id="shorturl" type="url" readonly value="Creating BXMRX..." />
 		
@@ -44,22 +45,21 @@
 		
 		<div id="show">
 		    
+		    <div id="loadingmessage" class="message">LOADING BXMRX</div>
 		    
-		    <div id="loadingmessage">Checking BXMRX...</div>
-		    
-		    <div id="failmessage">BXMRX does not exist!</div>
+		    <div id="failmessage" class="message">BXMRX DOES NOT EXIST</div>
 		    
 		    <div id="links"></div>
 		    
-		    <a id="launch" href="javascript:launch();">launch</a>
-		    
-		    <div id="makeyourown">Create BXMRX?</div>
+		    <a id="launch" href="javascript:launch();">OPEN BXMRX</a>
 		    
 		</div>
 		
 	    </div>
 	    
 	    <footer>
+		<p>BXMRX is an experiment in using <a href="">OpenKeyVal</a> to store data.</p>
+		<p>Source can be found on <a href="">Github</a>.</p>
 	    </footer>
         
 	</body>

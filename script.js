@@ -4,7 +4,6 @@ $(document).ready(function() {
 	var prefix = "bxmrx";
 	var keylength = 10;
 	var ownurl = "http://5310.github.com/bxmrx/index.html"
-	var global_urllist = [];
 	
 	
 	// Store URLs to OKV.
@@ -37,7 +36,7 @@ $(document).ready(function() {
 				$('#shorturl').focus();											//BUG: Not working when called from in here.
 				
 				// Clear URLs.
-				$('#urls').empty().append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="delete" /></div>');
+				$('#urls').empty().append('<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+" /><input class="delete" type="button" value="×" /></div>');
 				
 			});
 	
@@ -71,7 +70,7 @@ $(document).ready(function() {
 
 	// Add new URL entry row.
 	$('#addurl').click(function() {
-		var row = '<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="delete"/></div>';
+		var row = '<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="×"/></div>';
 		$('#enter').attr('disabled','disabled');
 		$(row).hide().appendTo('#urls').fadeIn();
 	});
@@ -79,15 +78,23 @@ $(document).ready(function() {
 	
 	// Delete URL entry row, or at least clear if the only one.
 	$(document).on("click", '.delete', function() {
+		
 		// If more than one URL entry exists, remove self, or else clear self.
 		if ( $('.url').length > 1 ) {
-			$(this).parent().hide(500, function() { $(this).remove(); });
+			$(this).parent().hide(500, function() { 
+				$(this).remove(); 
+				// If form is valid, enable button.
+				if ( $('#urls')[0].checkValidity() )
+					$('#enter').removeAttr('disabled');
+			});
 		} else {
 			$(this).parent().find('.url')[0].value = "";
 		}
 	});
+
 	
 	// Display URLlist.
+	var global_urllist = [];
 	display = function(key) {
 		
 		window.remoteStorage.getItem(prefix+key, function(value, prefixkey) {
@@ -143,6 +150,7 @@ $(document).ready(function() {
 		//close();
 	};
 
+
 	// Get URL parameter.
 	parameter = function(name) {
 		return decodeURI(
@@ -153,6 +161,7 @@ $(document).ready(function() {
 	toType = function(obj) {
 	  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 	}
+	
 	
 	// Set page mode by URL parameter, or lack thereof.
 	mode: {

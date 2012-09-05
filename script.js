@@ -68,6 +68,9 @@ $(document).ready(function() {
 			selection.addRange(range);
 		}
 	});
+	$('#shorturl').blur(function() {
+		setTimeout( function() { $('input[type=url]').last().select(); }, 50);
+	});
 
 
 	// Add new URL entry row.
@@ -75,6 +78,7 @@ $(document).ready(function() {
 		var row = '<div class="row"><input class="url" type="url" placeholder="url" required pattern="https?://.+"/><input class="delete" type="button" value="×"/></div>';
 		$('#enter').attr('disabled','disabled');
 		$(row).hide().appendTo('#urls').fadeIn();
+		$('input[type=url]').last().select();
 	});
 	
 	
@@ -84,13 +88,23 @@ $(document).ready(function() {
 		// If more than one URL entry exists, remove self, or else clear self.
 		if ( $('.url').length > 1 ) {
 			$(this).parent().hide(500, function() { 
-				$(this).remove(); 
+				$(this).remove();
+				$('input[type=url]').last().select();
 				// If form is valid, enable button.
 				if ( $('#urls')[0].checkValidity() )
 					$('#enter').removeAttr('disabled');
 			});
 		} else {
 			$(this).parent().find('.url')[0].value = "";
+		}
+	});
+	
+	
+	// Try to submit form on enter.
+	$(document).on("keypress", '.url', function(e) {
+		if (e.which == 13) {
+			$('#enter').click();
+			e.preventDefault();
 		}
 	});
 
@@ -170,6 +184,7 @@ $(document).ready(function() {
 			$('#launch').hide();												//BUG: Fading in from display: none is breaking style for some reason.
 		} else {
 			$('#make').show();
+			$('input[type=url]').first().select();
 		}
 	};
 	

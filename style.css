@@ -101,6 +101,7 @@ p { margin: 5px; }
 }
 #make #enter:focus {
     box-shadow: 
+            0 0 12px rgba(114, 194, 148, 1),
             0 0 12px rgba(114, 194, 148, 1);
 }
 

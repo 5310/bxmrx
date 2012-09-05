@@ -140,11 +140,6 @@ $(document).ready(function() {
 		
 	};
 	
-	// Launch all URLs in list.
-	$('#addurl').click(function() {
-		
-	});
-	
 	// Launch an array of URLs.
 	launch = function() {
 		for ( var i = 0; i<global_urllist.length; i++ ) {
